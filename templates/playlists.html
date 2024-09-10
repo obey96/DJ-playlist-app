@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>See all the playlists!</h1>
+
+<ul>
+{% for playlist in playlists %}
+  <li>
+     <a href="/playlists/{{ playlist.id }}">{{ playlist.name }}</a>
+  </li>
+{% endfor %}
+</ul>
+
+<!-- <p><a class="btn btn-primary" href="/playlists/add">Add a playlist</a></p> -->
+
+<form method="POST" action="/playlists/add">
+  {{ form.csrf_token }}
+  
+  <div class="form-group">
+      <label for="name">Playlist Name</label>
+      {{ form.name(class="form-control", id="name") }}
+  </div>
+
+  <div class="form-group">
+      <label for="description">Description</label>
+      {{ form.description(class="form-control", id="description") }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Playlist</button>
+</form>
+
+
+{% endblock %}

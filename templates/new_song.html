@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add a New Song</h1>
+
+<form method="POST">
+  {{ form.csrf_token }}
+  
+  <!-- Song Title Input -->
+  <div class="form-group">
+      <label for="title">Song Title</label>
+      {{ form.title(class="form-control", id="title") }}
+      {% if form.title.errors %}
+        <div class="text-danger">{{ form.title.errors[0] }}</div>
+      {% endif %}
+  </div>
+
+  <!-- Song Artist Input -->
+  <div class="form-group">
+      <label for="artist">Artist</label>
+      {{ form.artist(class="form-control", id="artist") }}
+      {% if form.artist.errors %}
+        <div class="text-danger">{{ form.artist.errors[0] }}</div>
+      {% endif %}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Add Song</button>
+</form>
+
+{% endblock %}

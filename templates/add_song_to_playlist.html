@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h1>Add a song to {{ playlist.name }}</h1>
+
+<form method="POST">
+    {{ form.csrf_token }}
+
+    <!-- Dropdown to select song -->
+    <div class="form-group">
+        <label for="song">Select Song to Add:</label>
+        {{ form.song(class="form-control", id="song") }}
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Song to Playlist</button>
+</form>
+
+{% endblock %}
