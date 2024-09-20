@@ -105,8 +105,9 @@ def add_song_to_playlist(playlist_id):
     form = NewSongForPlaylistForm()
 
     # Restrict form to songs not already on this playlist
+    # I did not define available_songs so it was not following the right path
     curr_on_playlist = [s.id for s in playlist.songs]
-    form.song.choices = (db.session.query(Song.id, Song.title)
+    available_songs = (db.session.query(Song.id, Song.title)
                          .filter(Song.id.notin_(curr_on_playlist))
                          .all())
     form.song.choices = [(song.id, song.title) for song in available_songs]
